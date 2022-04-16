@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="source.js"></script>
+    <script src="source.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,22 +17,19 @@
     <div class="main-content">
 
         <div class="menu">
-            <button class="mode-button"> <img class="menu-img" src="graphics/user.png" alt="Image of user"> </button>
-            <button class="mode-button"> <img class="menu-img" src="graphics/black-cross.png" alt="Image of user"> </button>
-            <button class="mode-button"> <img class="menu-img" src="graphics/black-circle.png" alt="Image of computer"> </button>
-            <button class="mode-button"> <img class="menu-img" src="graphics/computer.png" alt="Image of computer"> </button>
+            <button id="player-button" class="mode-button"> <img class="menu-img" src="graphics/user.png" alt="Image of user"> </button>
+            <button id="cross-button" class="mode-button"> <img class="menu-img" src="graphics/black-cross.png" alt="Image of user"> </button>
+            <button id="reset-button" class="mode-button text-button"> Reset </button>
+            <button id="circle-button" class="mode-button"> <img class="menu-img" src="graphics/black-circle.png" alt="Image of computer"> </button>
+            <button id="computer-button" class="mode-button"> <img class="menu-img" src="graphics/computer.png" alt="Image of computer"> </button>
         </div>
         
         <div class="board">
             <div class="board-grid big">
-                <div class="cell cell-border-right-b cell-border-bottom-b"> 
-                    <img src="graphics/cross.png" alt="Image of a cross" class="circle choice-icon-big"> 
-                </div>
+                <div class="cell cell-border-right-b cell-border-bottom-b"> </div>
                 <div class="cell cell-border-right-b cell-border-bottom-b"> </div>
                 <div class="cell cell-border-bottom-b"> </div>
-                <div class="cell cell-border-right-b cell-border-bottom-b">
-                    <img src="graphics/circle.png" alt="Image of a cross" class="circle choice-icon-big"> 
-                </div>
+                <div class="cell cell-border-right-b cell-border-bottom-b"></div>
                 <div class="cell cell-border-right-b cell-border-bottom-b"> </div>
                 <div class="cell cell-border-bottom-b"> </div>
                 <div class="cell cell-border-right-b"> </div>

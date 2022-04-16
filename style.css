@@ -67,7 +67,17 @@ body {
     transition: 0.3s;
 }
 
+.mode-button.text-button {
+    font-size: 22px;
+    width: fit-content;
+    padding: 5px 10px;
+    height: fit-content;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
 .mode-button:hover {
+    transform: scale(0.9);
     background-color:rgb(104 59 182 / 90%); 
 }
 
@@ -113,8 +123,8 @@ body {
 }
 
 .choice-icon-small {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 
 .board-history {
@@ -132,8 +142,8 @@ body {
     width: fit-content;
     margin: auto;
     display: grid;
-    grid-template-rows: 40px 40px 40px;
-    grid-template-columns: 40px 40px 40px;
+    grid-template-rows: 35px 35px 35px;
+    grid-template-columns: 35px 35px 35px;
 }
 
 .footer {
@@ -143,6 +153,7 @@ body {
 }
 
 .footer-attribute {
+    font-weight: 100;
     width: fit-content;
     margin: auto;
     color: rgb(104 59 182 / 60%);;
