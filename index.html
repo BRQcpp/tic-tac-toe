@@ -18,78 +18,35 @@
 
         <div class="menu">
             <button id="player-button" class="mode-button"> <img class="menu-img" src="graphics/user.png" alt="Image of user"> </button>
-            <button id="cross-button" class="mode-button"> <img class="menu-img" src="graphics/black-cross.png" alt="Image of user"> </button>
-            <button id="reset-button" class="mode-button text-button"> Reset </button>
+            <button id="cross-button" class="mode-button mode-button-selected"> <img class="menu-img" src="graphics/black-cross.png" alt="Image of user"> </button>
+            <div class="group-vertically">
+                <button id="reset-button" class="mode-button text-button"> Reset </button>
+                <div class="group-horizontally">
+                    <button id="reset-board-button" class="mode-button text-button sub-button"> board </button>
+                    <button id="reset-history-button" class="mode-button text-button sub-button"> history </button>
+                </div>
+            </div>
+
             <button id="circle-button" class="mode-button"> <img class="menu-img" src="graphics/black-circle.png" alt="Image of computer"> </button>
-            <button id="computer-button" class="mode-button"> <img class="menu-img" src="graphics/computer.png" alt="Image of computer"> </button>
+            <button id="computer-button" class="mode-button mode-button-selected"> <img class="menu-img" src="graphics/computer.png" alt="Image of computer"> </button>
         </div>
         
         <div class="board">
             <div class="board-grid big">
-                <div class="cell cell-border-right-b cell-border-bottom-b"> </div>
-                <div class="cell cell-border-right-b cell-border-bottom-b"> </div>
-                <div class="cell cell-border-bottom-b"> </div>
-                <div class="cell cell-border-right-b cell-border-bottom-b"></div>
-                <div class="cell cell-border-right-b cell-border-bottom-b"> </div>
-                <div class="cell cell-border-bottom-b"> </div>
-                <div class="cell cell-border-right-b"> </div>
-                <div class="cell cell-border-right-b"> </div>
+                <div class="cell cell-border-right cell-border-bottom"> </div>
+                <div class="cell cell-border-right cell-border-bottom"> </div>
+                <div class="cell cell-border-bottom"> </div>
+                <div class="cell cell-border-right cell-border-bottom"></div>
+                <div class="cell cell-border-right cell-border-bottom"> </div>
+                <div class="cell cell-border-bottom"> </div>
+                <div class="cell cell-border-right"> </div>
+                <div class="cell cell-border-right"> </div>
                 <div class="cell"></div>
             </div>
         </div>
 
         <div class="board-history">
-            <div class="board">
-                <div class="board-grid small">
-                    <div class="cell cell-border-right cell-border-bottom"> 
-                        <img src="graphics/cross.png" alt="Image of a cross" class="circle choice-icon-small"> 
-                    </div>
-                    <div class="cell cell-border-right cell-border-bottom"> </div>
-                    <div class="cell cell-border-bottom"> </div>
-                    <div class="cell cell-border-right cell-border-bottom">
-                        <img src="graphics/circle.png" alt="Image of a cross" class="circle choice-icon-small"> 
-                    </div>
-                    <div class="cell cell-border-right cell-border-bottom"> </div>
-                    <div class="cell cell-border-bottom"> </div>
-                    <div class="cell cell-border-right"> </div>
-                    <div class="cell cell-border-right"> </div>
-                    <div class="cell"></div>
-                </div>
-            </div>
-            <div class="board">
-                <div class="board-grid small">
-                    <div class="cell cell-border-right cell-border-bottom"> 
-                        <img src="graphics/cross.png" alt="Image of a cross" class="circle choice-icon-small"> 
-                    </div>
-                    <div class="cell cell-border-right cell-border-bottom"> </div>
-                    <div class="cell cell-border-bottom"> </div>
-                    <div class="cell cell-border-right cell-border-bottom">
-                        <img src="graphics/circle.png" alt="Image of a cross" class="circle choice-icon-small"> 
-                    </div>
-                    <div class="cell cell-border-right cell-border-bottom"> </div>
-                    <div class="cell cell-border-bottom"> </div>
-                    <div class="cell cell-border-right"> </div>
-                    <div class="cell cell-border-right"> </div>
-                    <div class="cell"></div>
-                </div>
-            </div>
-            <div class="board">
-                <div class="board-grid small">
-                    <div class="cell cell-border-right cell-border-bottom"> 
-                        <img src="graphics/cross.png" alt="Image of a cross" class="circle choice-icon-small"> 
-                    </div>
-                    <div class="cell cell-border-right cell-border-bottom"> </div>
-                    <div class="cell cell-border-bottom"> </div>
-                    <div class="cell cell-border-right cell-border-bottom">
-                        <img src="graphics/circle.png" alt="Image of a cross" class="circle choice-icon-small"> 
-                    </div>
-                    <div class="cell cell-border-right cell-border-bottom"> </div>
-                    <div class="cell cell-border-bottom"> </div>
-                    <div class="cell cell-border-right"> </div>
-                    <div class="cell cell-border-right"> </div>
-                    <div class="cell"></div>
-                </div>
-            </div>
+            <p>Board history</p>
         </div>
 
     </div>

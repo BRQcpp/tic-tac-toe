@@ -40,6 +40,7 @@ body {
     margin-top: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgb(104 59 182 / 60%);
+    white-space: nowrap;
 }   
 
 .heading {
@@ -47,6 +48,9 @@ body {
     text-align: center;
     font-size: 70px;
     margin: auto;
+    height: 89px;
+    overflow-x: auto;
+
 }
 
 .menu {
@@ -63,22 +67,48 @@ body {
     height: 66px;
     width: 66px;
     background-color:rgb(104 59 182 / 60%);
-    border-radius: 50%;
+    border-radius: 100%;
     transition: 0.3s;
 }
 
+.mode-button-selected {
+    transform: scale(0.9);
+    background-color: rgb(104 59 182 / 80%);
+}
+
 .mode-button.text-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 22px;
     width: fit-content;
     padding: 5px 10px;
     height: fit-content;
     border-radius: 10px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .mode-button:hover {
     transform: scale(0.9);
     background-color:rgb(104 59 182 / 90%); 
+}
+
+.group-vertically {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.group-horizontally {
+    display: flex;
+    gap: 10px;
+}
+
+.sub-button {
+    padding: 2px 5px !important;
+    font-size: 18px !important;
+    border-radius: 5px !important;
 }
 
 .menu-img {
@@ -117,12 +147,12 @@ body {
     align-items: center;
 }
 
-.choice-icon-big {
+.big > .cell > .choice-icon {
     width: 128px;
     height: 128px;
 }
 
-.choice-icon-small {
+.small > .cell > .choice-icon {
     width: 25px;
     height: 25px;
 }
@@ -136,6 +166,11 @@ body {
     height: 18%;
     border-bottom: 1px solid rgb(104 59 182 / 60%);
     border-top: 1px solid rgb(104 59 182 / 60%);
+    overflow-x: auto;
+}
+
+.board-history {
+    color: rgb(104 59 182 / 60%);
 }
 
 .board-grid.small {
@@ -177,18 +212,39 @@ body {
 }
 
 
-.cell-border-left-b {
+.big > .cell-border-left {
     border-left: 3px solid rgb(104 59 182 / 60%);
 }
 
-.cell-border-right-b {
+.big > .cell-border-right {
     border-right: 3px solid rgb(104 59 182 / 60%);
 }
 
-.cell-border-top-b {
+.big > .cell-border-top {
     border-top: 3px solid rgb(104 59 182 / 60%);
 }
 
-.cell-border-bottom-b {
+.big > .cell-border-bottom {
     border-bottom: 3px solid rgb(104 59 182 / 60%);
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgb(104 59 182 / 60%);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #683bb6;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    
+  }
