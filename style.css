@@ -72,7 +72,7 @@ body {
 }
 
 .mode-button-selected {
-    transform: scale(0.9);
+    transform: scale(0.86);
     background-color: rgb(104 59 182 / 80%);
 }
 
@@ -89,7 +89,7 @@ body {
 }
 
 .mode-button:hover {
-    transform: scale(0.9);
+    transform: scale(0.86);
     background-color:rgb(104 59 182 / 90%); 
 }
 
@@ -131,14 +131,62 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 474px;
 }
 
-.board-grid.big {
+.board-history > .board {
+    max-width: 105px;
+}
+
+.winner-screen {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 474px;
+    height: 474px;
+    position: relative;
+    left: -50%;
+    flex-shrink: 0;
+    background-color: rgb(104 59 182 / 10%);
+    -webkit-box-shadow: 0px 0px 24px 17px rgba(104, 59, 182, 0.1);
+    -moz-box-shadow: 0px 0px 24px 17px rgba(104, 59, 182, 0.1);
+    box-shadow: 0px 0px 24px 17px rgba(104, 59, 182, 0.1);
+}
+
+.winner-screen > p {
+    font-size: 60px;
+    text-align: center;
+}
+
+.board-history > .board > .winner-screen {
+    width: 105px;
+    height: 105px;
+}
+
+.board-history > .board > .winner-screen:hover {
+    opacity: 0;
+}
+
+.board-history > .board > .winner-screen:hover {
+    visibility: hidden;
+}
+
+.board-history > .board > .winner-screen > p {
+    font-size: 15px;
+}
+
+.board-grid.big { 
     width: fit-content;
     margin: auto;
     display: grid;
     grid-template-rows: 158px 158px 158px;
     grid-template-columns: 158px 158px 158px;
+}
+
+.board-grid {
+    position: relative;
+    left: 50%;
 }
 
 .cell {
@@ -167,6 +215,7 @@ body {
     border-bottom: 1px solid rgb(104 59 182 / 60%);
     border-top: 1px solid rgb(104 59 182 / 60%);
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .board-history {
