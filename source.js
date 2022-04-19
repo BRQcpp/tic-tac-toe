@@ -12,7 +12,7 @@ let TicTacToeGame = (function(doc, circle, cross)
 {
     let Player1 = createPlayer('Player 1', 0, cross);
     let Player2 = createPlayer('Player 2', 0, circle);
-    let turn = Player1;
+    let currentPlayer = Player1.mark == cross ? Player1 : Player2;
     let markPut = false;
     let board = doc.querySelector('.board');
     let grid = board.querySelector('.board-grid');
@@ -79,10 +79,17 @@ let TicTacToeGame = (function(doc, circle, cross)
                 if(cell.querySelector('img'))
                     cell.removeChild(cell.querySelector('img'));
             });
-            swapTurn();
             markPut = false;
             logicBoard = [null, null, null, null, null, null, null, null, null];
         }
+        if(mode == 'computer' && Player2.mark == cross)
+        {
+            currentPlayer = Player2;
+            computerPlay(); //!
+        }
+        else if(mode == 'player')
+            currentPlayer = Player1;
+
     }
 
     function resetHistoryBoard()
@@ -103,23 +110,23 @@ let TicTacToeGame = (function(doc, circle, cross)
     {
         if(!cell.querySelector('img'))
         {
-            let player = turn;
-            cell.appendChild(player.mark.cloneNode(true));
-            swapTurn();
+            cell.appendChild(currentPlayer.mark.cloneNode(true));
             markPut = true;
-            logicBoard[cell.getAttribute('data-id')] = player.mark == cross ? -1 : 1;      
-            let won = checkLogic(logicBoard);
-            if(won == null && mode == 'computer' && turn == Player2)
+            logicBoard[cell.getAttribute('data-id')] = currentPlayer.mark == cross ? -1 : 1;      
+            let result = checkLogic(logicBoard);
+            currentPlayer = currentPlayer == Player1 ? Player2 : Player1; //!
+            if(result == null && mode == 'computer' && currentPlayer == Player2)
                 computerPlay();
-            else if(won != null && won != 0) 
-                setWinnerScreen(won);
-            else if(won == 0)
+            else if(result != null && result != 0) 
+                setWinnerScreen(result);
+            else if(result == 0)
                 setWinnerScreen('tie');
         }
     }
 
     function computerPlay()
     {
+        currentPlayer = Player2;
         let index;
         switch(computerDifficulty)
         {
@@ -196,6 +203,10 @@ let TicTacToeGame = (function(doc, circle, cross)
     function playMINIMAX(logicBoard, depth, isMaximizing) //Coded along The Coding Train tutorial https://www.youtube.com/watch?v=trKjYdBASyQ&ab_channel=TheCodingTrain
     {   
         let result = checkLogic(logicBoard);
+        if(result == maxMark)
+            result = 1;
+        else if(result == minMark)
+            result = -1;
         if(result != null)
             return result;
 
@@ -243,6 +254,7 @@ let TicTacToeGame = (function(doc, circle, cross)
         let grid = historyBoard.querySelector('.board-grid');
         grid.classList.add('small');
         grid.classList.remove('big');
+        addHistoryBoardListener(historyBoard);
     }
 
     function checkLogic(logicBoard) 
@@ -306,25 +318,29 @@ let TicTacToeGame = (function(doc, circle, cross)
         grid.style.removeProperty('opacity');
     }
 
-    function swapTurn() 
-    {
-        turn = turn == Player1 ? Player2 : Player1;
-    }
- 
-    function changeTurn(p) 
-    {
-        turn = p == 0 ? Player1 : Player2;
-    }
-
     function setDifficulty(difficulty) 
     {
         computerDifficulty = difficulty.toLowerCase();
         resetBoard();
-        //computer play
+    }
+
+    function addHistoryBoardListener(board)
+    {
+        if(board.querySelector('.winner-screen'))
+        {
+            board.querySelector('.winner-screen').addEventListener('mouseover', () =>
+            {
+                board.querySelector('.board-grid').style.setProperty('opacity', '1');
+            });
+            board.querySelector('.winner-screen').addEventListener('mouseout', () =>
+            {
+                board.querySelector('.board-grid').style.setProperty('opacity', '0.2');
+            });
+        }
     }
 
     return {
-        swapMarks, resetBoard, resetHistoryBoard, changeMode, changeName, computerPlay, changeTurn, setDifficulty
+        swapMarks, resetBoard, resetHistoryBoard, changeMode, changeName, computerPlay,setDifficulty
     }
 
 })(document, circle, cross)    
@@ -338,6 +354,7 @@ let playerButton = document.querySelector('#player-button');
 let computerButton = document.querySelector('#computer-button');
 let nameInputs = document.querySelectorAll('.player-name-input');
 let dmOptions = document.querySelectorAll('.dm-option');
+let Player2Name = 'Player2';
 
 dmOptions.forEach( (option) => 
 {
@@ -353,19 +370,20 @@ dmOptions.forEach( (option) =>
     });
 });
 
-nameInputs.forEach( input => 
+nameInputs[0].addEventListener('input', () => 
 {
-    input.addEventListener('input', () => 
-    {
-        TicTacToeGame.changeName(input.value, input.getAttribute('data-id'));
-    }); 
-}) 
+   TicTacToeGame.changeName(nameInputs[0].value, nameInputs[0].getAttribute('data-id'));
+});  
+
+nameInputs[1].addEventListener('input', () => 
+{
+   TicTacToeGame.changeName(nameInputs[1].value, nameInputs[1].getAttribute('data-id'));
+   Player2Name = nameInputs[1].value;
+});  
 
 resetBoardButton.addEventListener('click', () =>
 {
     TicTacToeGame.resetBoard();
-    if(circleButton.classList.contains('mode-button-selected'))
-        TicTacToeGame.computerPlay();
 });
 
 resetHistBrdButton.addEventListener('click', () =>
@@ -376,11 +394,7 @@ resetHistBrdButton.addEventListener('click', () =>
 circleButton.addEventListener('click', () =>
 {
     if(TicTacToeGame.swapMarks(cross, circle))
-    {
-        TicTacToeGame.changeTurn(1);
         setSelectedButton(circleButton, crossButton);
-        TicTacToeGame.computerPlay();
-    }
 });
 
 crossButton.addEventListener('click', () =>
@@ -393,9 +407,9 @@ playerButton.addEventListener('click', () =>
 {
     if(!playerButton.classList.contains('mode-button-selected'))
     {
+        nameInputs[1].value = Player2Name;
         computerButton.classList.remove('go-up-animation');
         document.querySelector('.difficulty-menu').classList.add('go-down-animation');
-        TicTacToeGame.changeTurn(0);
         document.querySelector('label[for="name1"]').textContent = "x player name";
         document.querySelector('label[for="name2"]').textContent = "o player name";
         crossButton.setAttribute('disabled', '');
@@ -412,9 +426,9 @@ computerButton.addEventListener('click', () =>
 {
     if(!computerButton.classList.contains('mode-button-selected'))
     {
+        nameInputs[1].value = 'Computer';
         computerButton.classList.add('go-up-animation');
         document.querySelector('.difficulty-menu').classList.remove('go-down-animation');
-        let turn = circleButton.classList.contains('mode-button-selected') ? 1 : 0;
         document.querySelector('label[for="name1"]').textContent = "Player's name";
         document.querySelector('label[for="name2"]').textContent = "Computer's name";
         crossButton.removeAttribute('disabled');
@@ -431,8 +445,6 @@ resetButton.addEventListener('click', () =>
 {
     TicTacToeGame.resetBoard();
     TicTacToeGame.resetHistoryBoard();
-    if(circleButton.classList.contains('mode-button-selected'))
-        TicTacToeGame.computerPlay();
 });
 
 function setSelectedButton(element, opposite = null)
