@@ -17,8 +17,12 @@
     <div class="main-content">
 
         <div class="menu">
+            <div class="name-input">
+                <label for="name1">x player name</label>
+                <input class="player-name-input" type="text" name="name1" data-id="0" value="Player1">
+            </div>
             <button id="player-button" class="mode-button mode-button-selected"> <img class="menu-img" src="graphics/user.png" alt="Image of user"> </button>
-            <button id="cross-button" class="mode-button mode-button-selected"> <img class="menu-img" src="graphics/black-cross.png" alt="Image of user"> </button>
+            <button id="cross-button" class="mode-button mode-button-selected" type="button" disabled> <img class="menu-img" src="graphics/black-cross.png" alt="Image of user" type="button"> </button>
             <div class="group-vertically">
                 <button id="reset-button" class="mode-button text-button"> Reset </button>
                 <div class="group-horizontally">
@@ -26,9 +30,21 @@
                     <button id="reset-history-button" class="mode-button text-button sub-button"> history </button>
                 </div>
             </div>
+            <button id="circle-button" class="mode-button" type="button" disabled> <img class="menu-img" src="graphics/black-circle.png" alt="Image of computer"> </button>
+            <div class="group-horizontally dm">
+                <button id="computer-button" class="mode-button"> <img class="menu-img" src="graphics/computer.png" alt="Image of computer"> </button>
+                <div class="difficulty-menu  go-down-animation">
+                    <div class="dm-option text-menu-selected">Easy</div>
+                    <div class="dm-option">Medium</div>
+                    <div class="dm-option">Hard</div>
+                    <div class="dm-option">Unbeatable</div>
+                </div>
+            </div>
 
-            <button id="circle-button" class="mode-button"> <img class="menu-img" src="graphics/black-circle.png" alt="Image of computer"> </button>
-            <button id="computer-button" class="mode-button"> <img class="menu-img" src="graphics/computer.png" alt="Image of computer"> </button>
+            <div class="name-input">
+                <label for="name2">o player name</label>
+                <input class="player-name-input"type="text" name="name2" data-id="1" value="Player2">
+            </div>
         </div>
         
         <div class="board">
