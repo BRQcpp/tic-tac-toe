@@ -90,8 +90,11 @@ body {
 }
 
 .mode-button.selectable:hover {
-    transform: scale(0.86);
-    background-color:rgb(104 59 182 / 90%); 
+    background-color:rgb(104 59 182 / 80%); 
+}
+
+.mode-button.text-button:hover {
+    transform: scale(0.95);
 }
 
 .mode-button:disabled {

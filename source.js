@@ -88,8 +88,11 @@ let TicTacToeGame = (function(doc, circle, cross)
             computerPlay(); //!
         }
         else if(mode == 'player')
+        {
             currentPlayer = Player1;
-
+            Player1.mark = cross;
+            Player2.mark = circle;
+        }
     }
 
     function resetHistoryBoard()
@@ -408,6 +411,7 @@ playerButton.addEventListener('click', () =>
     if(!playerButton.classList.contains('mode-button-selected'))
     {
         nameInputs[1].value = Player2Name;
+        TicTacToeGame.changeName(nameInputs[1].value, 1);
         computerButton.classList.remove('go-up-animation');
         document.querySelector('.difficulty-menu').classList.add('go-down-animation');
         document.querySelector('label[for="name1"]').textContent = "x player name";
@@ -427,6 +431,7 @@ computerButton.addEventListener('click', () =>
     if(!computerButton.classList.contains('mode-button-selected'))
     {
         nameInputs[1].value = 'Computer';
+        TicTacToeGame.changeName(nameInputs[1].value, 1);
         computerButton.classList.add('go-up-animation');
         document.querySelector('.difficulty-menu').classList.remove('go-down-animation');
         document.querySelector('label[for="name1"]').textContent = "Player's name";
